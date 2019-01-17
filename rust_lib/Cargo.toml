@@ -1,0 +1,19 @@
+[package]
+name = "rust_lib"
+version = "0.1.0"
+authors = ["BERGER Thierry <thierry.berger@externe.e-i.com>"]
+edition = "2018"
+
+[profile.release]
+# To save library size, we drop unwinding.
+# I consider acceptable to do that for a library, see https://doc.rust-lang.org/1.6.0/std/thread/fn.catch_panic.html :
+# - catch_panic documentation states that "It is currently undefined behavior to unwind from Rust code into foreign code, so this function is particularly useful when Rust is called from another language"
+# We could then use catch_panic to be able to recover from internal panics, but the chosen approach is to avoid panics/aborts at all costs.
+panic = "abort"
+
+[lib]
+name="rust_ffi_lib"
+crate-type = ["cdylib"]
+
+[dependencies]
+
