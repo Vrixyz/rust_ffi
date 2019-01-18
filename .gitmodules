@@ -1,0 +1,3 @@
+[submodule "tree_n"]
+	path = tree_n
+	url = git@gitlab.com:Vrixyz/tree_n.git
